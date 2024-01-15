@@ -35,8 +35,23 @@ int[] GetRandomArray(int len, int min, int max)
     return array;
 }
 
-Console.WriteLine("Input length of an array");
-int len = Convert.ToInt32(Console.ReadLine());
-int[] array = GetRandomArray(len, 100, 1000);
-PrintArray(array);
-Console.WriteLine($"{CountEvenNumber(array)} elements of array is even");
+bool exit = false;
+
+do
+{
+    Console.WriteLine("Input length of an array");
+    bool result = int.TryParse(Console.ReadLine(), out int len);
+    if (result == true)
+    {
+        int[] array = GetRandomArray(len, 100, 1000);
+        PrintArray(array);
+        Console.WriteLine($"{CountEvenNumber(array)} elements of array is even");
+        exit = true;
+    }
+    if (result == false)
+    {
+        Console.WriteLine("Invalid input");
+        Console.WriteLine("Try again: ");
+    }
+}
+while (!exit);
